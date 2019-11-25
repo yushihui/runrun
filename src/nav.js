@@ -15,14 +15,19 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import { Link as RouterLink } from 'react-router-dom';
-import { Switch, Route, MemoryRouter } from 'react-router';
-import PropTypes from 'prop-types';
+import EventIcon from '@material-ui/icons/Event';
+import MoneyIcon from '@material-ui/icons/Money';
+import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
+import ScheduleIcon from "@material-ui/icons/Schedule";
+import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
+import { Link as RouterLink } from "react-router-dom";
+import { Switch, Route, MemoryRouter } from "react-router";
+import PropTypes from "prop-types";
 import Activity from "./components/activity/activity";
-import Plan from "./components/plan/paln";
+import Plan from "./components/plan/plan";
+import Race from "./components/activity/race";
+import RaceEvent from "./components/plan/event";
+import Fit from "./components/fit/fitness";
 
 const drawerWidth = 240;
 
@@ -86,29 +91,29 @@ function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const renderLink = React.useMemo(
-      () =>
-          React.forwardRef((itemProps, ref) => (
-              // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
-              // See https://github.com/ReactTraining/react-router/issues/6056
-              <RouterLink to={to} {...itemProps} innerRef={ref} />
-          )),
-      [to],
+    () =>
+      React.forwardRef((itemProps, ref) => (
+        // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
+        // See https://github.com/ReactTraining/react-router/issues/6056
+        <RouterLink to={to} {...itemProps} innerRef={ref} />
+      )),
+    [to]
   );
 
   return (
-      <li>
-        <ListItem button component={renderLink}>
-          {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-          <ListItemText primary={primary} />
-        </ListItem>
-      </li>
+    <li>
+      <ListItem button component={renderLink}>
+        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
   );
 }
 
 ListItemLink.propTypes = {
   icon: PropTypes.element,
   primary: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired
 };
 
 export default function NaviLeft() {
@@ -171,20 +176,20 @@ export default function NaviLeft() {
           </IconButton>
         </div>
         <Divider />
-          <List aria-label="main mailbox folders">
-            <ListItemLink to="/activity" primary="Activity" icon={<InboxIcon />} />
-            <ListItemLink to="/plan" primary="Plan" icon={<DraftsIcon />} />
-          </List>
+        <List aria-label="main mailbox folders">
+          <ListItemLink
+            to="/activity"
+            primary="Activity"
+            icon={<DirectionsRunIcon />}
+          />
+          <ListItemLink to="/plan" primary="Plan" icon={<ScheduleIcon />} />
+          <ListItemLink to="/race" primary="Race" icon={<EmojiEventsIcon />} />
+        </List>
         <Divider />
         <List>
-          {generalActions.map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItemLink to="/plan" primary="Plan" icon={<ScheduleIcon />} />
+          <ListItemLink to="/health" primary="Fitness" icon={<MoneyIcon />} />
+          <ListItemLink to="/event" primary="Event" icon={<EventIcon />} />
         </List>
       </Drawer>
       <main
@@ -195,9 +200,11 @@ export default function NaviLeft() {
         <div className={classes.drawerHeader} />
 
         <Switch>
-
-          <Route path='/activity' component={Activity}/>
-          <Route path='/plan' component={Plan}/>
+          <Route path="/activity" component={Activity} />
+          <Route path="/plan" component={Plan} />
+          <Route path="/race" component={Race} />
+          <Route path="/event" component={RaceEvent} />
+          <Route path="/health" component={Fit} />
         </Switch>
       </main>
     </div>
