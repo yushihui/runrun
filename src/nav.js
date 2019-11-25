@@ -17,6 +17,12 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import DraftsIcon from "@material-ui/icons/Drafts";
+import { Link as RouterLink } from 'react-router-dom';
+import { Switch, Route, MemoryRouter } from 'react-router';
+import PropTypes from 'prop-types';
+import Activity from "./components/activity/activity";
+import Plan from "./components/plan/paln";
 
 const drawerWidth = 240;
 
@@ -76,6 +82,35 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
+
+  const renderLink = React.useMemo(
+      () =>
+          React.forwardRef((itemProps, ref) => (
+              // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
+              // See https://github.com/ReactTraining/react-router/issues/6056
+              <RouterLink to={to} {...itemProps} innerRef={ref} />
+          )),
+      [to],
+  );
+
+  return (
+      <li>
+        <ListItem button component={renderLink}>
+          {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+          <ListItemText primary={primary} />
+        </ListItem>
+      </li>
+  );
+}
+
+ListItemLink.propTypes = {
+  icon: PropTypes.element,
+  primary: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+};
+
 export default function NaviLeft() {
   const classes = useStyles();
   const theme = useTheme();
@@ -94,6 +129,7 @@ export default function NaviLeft() {
   return (
     <div className={classes.root}>
       <CssBaseline />
+
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
@@ -115,6 +151,7 @@ export default function NaviLeft() {
           </Typography>
         </Toolbar>
       </AppBar>
+
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -134,16 +171,10 @@ export default function NaviLeft() {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {personalActions.map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+          <List aria-label="main mailbox folders">
+            <ListItemLink to="/activity" primary="Activity" icon={<InboxIcon />} />
+            <ListItemLink to="/plan" primary="Plan" icon={<DraftsIcon />} />
+          </List>
         <Divider />
         <List>
           {generalActions.map((text, index) => (
@@ -162,6 +193,12 @@ export default function NaviLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
+
+        <Switch>
+
+          <Route path='/activity' component={Activity}/>
+          <Route path='/plan' component={Plan}/>
+        </Switch>
       </main>
     </div>
   );
