@@ -19,6 +19,8 @@ import EventIcon from '@material-ui/icons/Event';
 import MoneyIcon from '@material-ui/icons/Money';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import ScheduleIcon from "@material-ui/icons/Schedule";
+import HomeIcon from '@material-ui/icons/Home';
+import StarIcon from '@material-ui/icons/Star';
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import { Link as RouterLink } from "react-router-dom";
 import { Switch, Route, MemoryRouter } from "react-router";
@@ -28,6 +30,8 @@ import Plan from "./components/plan/plan";
 import Race from "./components/activity/race";
 import RaceEvent from "./components/plan/event";
 import Fit from "./components/fit/fitness";
+import Dashboard from "./components/activity/dashboard";
+import Story from "./components/story/story";
 
 const drawerWidth = 240;
 
@@ -176,13 +180,13 @@ export default function NaviLeft() {
           </IconButton>
         </div>
         <Divider />
-        <List aria-label="main mailbox folders">
+        <List aria-label="personal folders">
+          <ListItemLink to="/" primary="Home" icon={<HomeIcon />} />
           <ListItemLink
             to="/activity"
             primary="Activity"
             icon={<DirectionsRunIcon />}
           />
-          <ListItemLink to="/plan" primary="Plan" icon={<ScheduleIcon />} />
           <ListItemLink to="/race" primary="Race" icon={<EmojiEventsIcon />} />
         </List>
         <Divider />
@@ -190,6 +194,7 @@ export default function NaviLeft() {
           <ListItemLink to="/plan" primary="Plan" icon={<ScheduleIcon />} />
           <ListItemLink to="/health" primary="Fitness" icon={<MoneyIcon />} />
           <ListItemLink to="/event" primary="Event" icon={<EventIcon />} />
+          <ListItemLink to="/story" primary="Story" icon={<StarIcon />} />
         </List>
       </Drawer>
       <main
@@ -200,11 +205,14 @@ export default function NaviLeft() {
         <div className={classes.drawerHeader} />
 
         <Switch>
+
           <Route path="/activity" component={Activity} />
           <Route path="/plan" component={Plan} />
           <Route path="/race" component={Race} />
           <Route path="/event" component={RaceEvent} />
           <Route path="/health" component={Fit} />
+          <Route path="/story" component={Story} />
+          <Route path="/" component={Dashboard} />
         </Switch>
       </main>
     </div>
