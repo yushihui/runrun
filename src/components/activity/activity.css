@@ -13,6 +13,42 @@ h3 {
     text-align: left;
 }
 
+div.hr100.paper {
+    background-color: #00ffb7 !important;
+}
+
+.hr130 {
+    background-color: #00ff40 !important;
+}
+
+.hr135 {
+    background-color: #04ff00 !important;
+}
+
+.hr140 {
+    background-color: #b3ff00 !important;
+}
+
+.hr145 {
+    background-color: #ffcc00 !important;
+}
+
+.hr150 {
+    background-color: #ff8400 !important;
+}
+
+.hr155 {
+    background-color: #ff5900 !important;
+}
+
+.hr160 {
+    background-color: #ff2a00 !important;
+}
+
+.hr165 {
+    background-color: #ff0000 !important;
+}
+
 .card-time {
     float: right;
 }
