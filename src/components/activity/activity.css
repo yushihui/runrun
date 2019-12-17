@@ -1,0 +1,26 @@
+h3 {
+    text-align: left;
+}
+
+.walk {
+    opacity: 0.4;
+}
+
+.paper {
+    padding-top: 12px;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-align: left;
+}
+
+.card-time {
+    float: right;
+}
+
+section span {
+    margin-left: 12px;
+}
+
+small {
+    margin-left: 2px;
+}
