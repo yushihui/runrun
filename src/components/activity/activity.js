@@ -32,7 +32,6 @@ export default class Activity extends Component {
     ACTIVITY_WALK = "Walk";
     ACTIVITY_RUN = "Run";
 
-
     activityUrl = 'https://raw.githubusercontent.com/yushihui/go.strava/master/result/36533/activities.json';
 
     componentDidMount() {
