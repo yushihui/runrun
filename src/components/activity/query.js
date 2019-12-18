@@ -1,0 +1,13 @@
+export default  class Query {
+    fromTime; //run date
+    toTime;
+    fromHbr;//heartbeat rate
+    toHbr;
+    fromPace;
+    toPace;
+    fromDistance;// in miles
+    toDistance;
+    fromMinutes;//how many minutes
+    toMinutes;
+
+}

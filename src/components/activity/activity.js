@@ -20,7 +20,7 @@ const activityStyles = makeStyles(theme => ({
 const MINUTES_PER_MILE = 26.8224;
 const hSplit = [165, 160, 155, 150, 145, 140, 135, 130];
 
-function getBgClor(hbt) {
+function getBgColor(hbt) {
     return "hr" + hSplit.find(e => hbt >= e)
 }
 
@@ -44,19 +44,14 @@ export default class Activity extends Component {
             .catch(console.log)
     }
 
-    getHr(heart) {
-
-    }
-
     render() {
-
         return (
             <div className="">
                 <h3>My Activities</h3>
                 <Grid container spacing={3}>
                     {this.state.activities.map((activity) => (
                         <Grid item xs={12} lg={2} sm={6}>
-                            <Paper className={classNames("paper", getBgClor(activity.average_heartrate),{
+                            <Paper className={classNames("paper", getBgColor(activity.average_heartrate),{
                                 walk: activity.type === this.ACTIVITY_WALK
                             })}>
                                 <span className="card-name">{activity.name}</span>

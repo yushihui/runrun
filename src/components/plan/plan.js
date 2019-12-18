@@ -9,6 +9,6 @@ const  Plan= () => (
             <li>6/14 @ United</li>
         </ul>
     </div>
-)
+);
 
 export default Plan
