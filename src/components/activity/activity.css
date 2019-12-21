@@ -71,7 +71,22 @@ small {
     margin-top: 32px;
     float: left;
 }
-.search-btn{
-    margin-top: 24px!important;
+
+.search-btn {
+    margin-top: 12px !important;
     float: right;
+}
+
+.query-range {
+    width: 120px;
+    margin-left: 6px !important;
+}
+
+.query-time {
+    width: 140px;
+    margin-left: 6px !important;
+    margin-top: 0px !important;
+}
+.filter-row{
+    margin-bottom: 12px;
 }
