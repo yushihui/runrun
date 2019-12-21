@@ -1,4 +1,4 @@
-export default  class Query {
+export default class ActivityQuery {
     fromTime; //run date
     toTime;
     fromHbr;//heartbeat rate

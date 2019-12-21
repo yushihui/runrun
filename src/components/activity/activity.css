@@ -1,4 +1,4 @@
-h3 {
+h3, .filter-row {
     text-align: left;
 }
 
@@ -59,4 +59,19 @@ section span {
 
 small {
     margin-left: 2px;
+}
+
+.query-inline {
+    display: inline;
+    margin-left: 24px;
+}
+
+.activity-label {
+    font-size: 18px;
+    margin-top: 32px;
+    float: left;
+}
+.search-btn{
+    margin-top: 24px!important;
+    float: right;
 }
