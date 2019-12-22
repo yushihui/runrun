@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 
-const activityTypes = ["All", "Run", "Walk"];
+const activityTypes = ["All", "Run", "Walk", "Race", "Hike"];
 
 export default function ActivityFilter(props) {
     const [startDate, setStartDate] = React.useState(new Date('2014-08-18T21:11:54'));
