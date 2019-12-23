@@ -90,7 +90,7 @@ export default function ActivityFilter(props) {
                 select
                 label="Activity Type"
                 value={activityType}
-                onChange={handleActivityTypeChange}
+                onChange={handleActivityTypeChange.bind()}
                 SelectProps={{
                     native: true,
                 }}
@@ -102,7 +102,7 @@ export default function ActivityFilter(props) {
                     </option>
                 ))}
             </TextField>
-            <Button variant="contained" color="primary" onClick={(evt) => props.query({startDate, endDate})}
+            <Button variant="contained" color="primary" onClick={(evt) => props.query({startDate, endDate, activityType})}
                     className={"search-btn"}>
                 Search
             </Button>

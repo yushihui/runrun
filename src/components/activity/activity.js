@@ -21,7 +21,8 @@ export default class Activity extends Component {
     ACTIVITY_WALK = "Walk";
     ACTIVITY_RUN = "Run";
 
-    activityUrl = 'https://raw.githubusercontent.com/yushihui/go.strava/master/result/36533/activities.json';
+    //activityUrl = 'https://raw.githubusercontent.com/yushihui/go.strava/master/result/36533/activities.json';
+    activityUrl = '/activity.json';
 
     componentDidMount() {
         fetch(this.activityUrl)
@@ -49,16 +50,19 @@ export default class Activity extends Component {
                                 walk: activity.type === this.ACTIVITY_WALK
                             })}>
                                 <div className="card-name" title={activity.name}>{activity.name}</div>
-                                <span className="card-time">{activity.start_date_local.substr(0, 10)}</span>
-                                <section>
-                                    <span
-                                        className="distance">D: {(activity.distance / 1609).toFixed(2)}<small>mi</small></span>
-                                    <span
-                                        className="distance">P: {activity.average_speed > 0 ? ((MINUTES_PER_MILE / activity.average_speed).toFixed(2)) : activity.average_speed}<small>m/mi</small></span>
-                                    <span
-                                        className="distance">H: {activity.average_heartrate}</span>
 
-                                </section>
+                                <div className="metrics">
+                                    <span
+                                        className="distance pull-left">P: {activity.average_speed > 0 ? ((MINUTES_PER_MILE / activity.average_speed).toFixed(2)) : activity.average_speed}<small>m/mi</small></span>
+                                    <span
+                                        className="distance pull-right">H: {activity.average_heartrate}</span>
+                                </div>
+                                <div className="metrics">
+                                     <span
+                                         className="distance">D: {(activity.distance / 1609).toFixed(2)}<small>mi</small></span>
+                                    <span
+                                        className="card-time pull-right">{activity.start_date_local.substr(2, 8)}</span>
+                                </div>
                             </Paper>
                         </Grid>
                     ))}
