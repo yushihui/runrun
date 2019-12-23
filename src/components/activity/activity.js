@@ -48,7 +48,7 @@ export default class Activity extends Component {
                             <Paper className={classNames("paper", getBgColor(activity.average_heartrate), {
                                 walk: activity.type === this.ACTIVITY_WALK
                             })}>
-                                <span className="card-name">{activity.name}</span>
+                                <div className="card-name" title={activity.name}>{activity.name}</div>
                                 <span className="card-time">{activity.start_date_local.substr(0, 10)}</span>
                                 <section>
                                     <span

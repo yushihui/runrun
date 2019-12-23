@@ -53,6 +53,14 @@ div.hr100.paper {
     float: right;
 }
 
+.card-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    display: inline-block;
+}
+
 section span {
     margin-left: 12px;
 }
@@ -87,6 +95,7 @@ small {
     margin-left: 6px !important;
     margin-top: 0px !important;
 }
-.filter-row{
+
+.filter-row {
     margin-bottom: 12px;
 }
