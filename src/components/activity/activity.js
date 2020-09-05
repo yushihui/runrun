@@ -1,17 +1,11 @@
 import React, {Component} from 'react';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import classNames from "classnames";
 import './activity.css'
 import ActivityFilter from "./activityfilter";
+import ActivityItem from "./activityItem";
 
 
 const MINUTES_PER_MILE = 26.8224;
-const hSplit = [165, 160, 155, 150, 145, 140, 135, 130];
-
-function getBgColor(hbt) {
-    return "hr" + hSplit.find(e => hbt >= e)
-}
 
 function checkRange(str) {
     const regex = /[0-9]-[0-9]/g;
@@ -38,7 +32,7 @@ export default class Activity extends Component {
         activities: []
     };
     activities = [];
-    ACTIVITY_WALK = "Walk";
+
     //activityUrl = 'https://raw.githubusercontent.com/yushihui/go.strava/master/result/36533/activities.json';
     activityUrl = '/activity.json';
 
@@ -87,26 +81,7 @@ export default class Activity extends Component {
                 </div>
                 <Grid container spacing={3}>
                     {this.state.activities.map((activity) => (
-                        <Grid item xs={12} lg={2} sm={6} key={activity.id}>
-                            <Paper className={classNames("paper", getBgColor(activity.average_heartrate), {
-                                walk: activity.type === this.ACTIVITY_WALK
-                            })}>
-                                <div className="card-name" title={activity.name}>{activity.name}</div>
-
-                                <div className="metrics">
-                                    <span
-                                        className="distance pull-left">P: {activity.average_speed > 0 ? ((MINUTES_PER_MILE / activity.average_speed).toFixed(2)) : activity.average_speed}<small>m/mi</small></span>
-                                    <span
-                                        className="distance pull-right">H: {activity.average_heartrate}</span>
-                                </div>
-                                <div className="metrics">
-                                     <span
-                                         className="distance">D: {(activity.distance / 1609).toFixed(2)}<small>mi</small></span>
-                                    <span
-                                        className="card-time pull-right">{activity.start_date_local.substr(2, 8)}</span>
-                                </div>
-                            </Paper>
-                        </Grid>
+                        <ActivityItem activity={activity} key={activity.id}></ActivityItem>
                     ))}
                 </Grid>
             </div>

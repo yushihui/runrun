@@ -17,7 +17,7 @@ function useInput(initialValue) {
     const [value, setValue] = useState(initialValue);
 
     function handleChange(e) {
-        if(e.target === undefined) {
+        if (e.target === undefined) {
             setValue(e);
         } else {
             setValue(e.target.value);
@@ -36,8 +36,8 @@ export default function ActivityFilter(props) {
     const endDate = useInput(new Date('2019-10-18T21:11:54'));
     const activityType = useInput("All");
     const pace = useInput("8-10");
-    const distance = useInput("8-10");
-    const avgHeartbeat = useInput("130-150");
+    const distance = useInput("5-10");
+    const avgHeartbeat = useInput("120-150");
     return (
         <div className={"query-inline"}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -106,8 +106,8 @@ export default function ActivityFilter(props) {
                         endDate: endDate.value,
                         activityType: activityType.value,
                         pace: pace.value,
-                        avgHeartbeat:avgHeartbeat.value,
-                        distance:distance.value
+                        avgHeartbeat: avgHeartbeat.value,
+                        distance: distance.value
                     })}
                     className={"search-btn"}>
                 Search
